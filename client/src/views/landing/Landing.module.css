@@ -1,0 +1,64 @@
+.container {
+  color: white;
+  height: 100vh;
+}
+
+.backgroundImage {
+  background-image: url("../../images/fondoDog.jpeg");
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.backgroundImage h1 {
+  font-size: 7em;
+  line-height: 1.1;
+  margin-bottom: 5px;
+  text-shadow: -5px -2px 5px #000000;
+}
+
+.backgroundImage h2 {
+  margin: 0px 0px 6rem 0px;
+  text-shadow: -5px -2px 5px #000000;
+}
+
+.container button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 17px;
+  font-weight: bold;
+  padding: inherit;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.buttonTop {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.container button:hover .buttonTop {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.container button:active .buttonTop {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}

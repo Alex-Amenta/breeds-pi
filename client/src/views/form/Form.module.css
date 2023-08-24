@@ -1,0 +1,98 @@
+.container h1 {
+  text-shadow: -3px 4px 0px rgba(0, 0, 0, 0.961);
+  color: white;
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60rem;
+  height: 60rem;
+  margin: auto;
+  margin-bottom: 100px;
+  padding: 0px 0px 50px 0px;
+  background: white;
+  color: black;
+  font-weight: 500;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.create {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 14px;
+  margin: 50px 5px 0px 5px;
+  font-weight: bold;
+  padding: initial;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.buttonTop {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.create:hover .buttonTop {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.create:active .buttonTop {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+.button_create {
+  margin-top: 50px;
+  font-size: 14px;
+  padding: initial;
+  font-weight: bold;
+  border-radius: 0.75em;
+  background-color: #5d5d5dce;
+}
+
+.form label {
+  margin-top: 20px;
+}
+
+.form input {
+  border-radius: 0.75em;
+  width: 200px;
+  padding: 3px 10px 3px 15px;
+}
+
+.form select {
+  border-radius: 0.75em;
+  width: 230px;
+  padding: 5px 10px 5px 15px;
+}
+
+.error_message {
+  color: rgb(220, 7, 7);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 500;
+  max-height: 20px;
+}

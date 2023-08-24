@@ -1,0 +1,52 @@
+.pagination {
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.first {
+  margin: 0px 10px 0px 10px;
+}
+
+.pagination button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 14px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  padding: inherit;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.buttonTop {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.pagination button:hover .buttonTop {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.pagination button:active .buttonTop {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+/* Estilo para el botón activo sin el efecto de hover 
+color principal: #4d8e9a */
+.pagination button.active:not(:active) {
+  background-color: #6bd2e4;
+  padding-bottom: 3px;
+}

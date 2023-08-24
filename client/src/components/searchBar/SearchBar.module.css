@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  border: none;
+  padding: 10px 20px 10px 20px;
+  width: 19rem;
+  color: black;
+  color-scheme: light;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  transition: 0.3s;
+}
+
+.lupa {
+  background: transparent;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.lupa i {
+  background: transparent;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.lupa i:hover {
+  color: rgb(209, 206, 206);
+}

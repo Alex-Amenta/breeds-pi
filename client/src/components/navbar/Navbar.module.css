@@ -1,0 +1,41 @@
+.container {
+  background-color: #4d8e9a;
+  background-position: top;
+  background-size: cover;
+}
+
+.container ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.li1 {
+  flex-grow: 1;
+  font-size: 18px;
+}
+
+.li2 {
+  flex-grow: 3;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: #dbdada;
+}
+
+.container a i {
+  font-size: 25px;
+  margin-left: 25px;
+}
+
+.container a i:hover {
+  color: #dbdada;
+}
