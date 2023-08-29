@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import styles from "./Pagination.module.css";
 
 const Pagination = ({ currentPage, onPageChange, totalPages }) => {

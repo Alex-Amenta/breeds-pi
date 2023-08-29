@@ -1,14 +1,19 @@
 const validations = (newDog) => {
     const errors = {};
+    const regex_image = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png)/gi;
 
     if (!newDog.name) {
         errors.name = "Please enter a name"
     } else if (newDog.name.length > 20) {
         errors.name = "The name must be less than 20 characters"
+    } else if (/\d/.test(newDog.name)) {
+        errors.name = "The name cannot contain numbers"
     }
 
-    if (!newDog.imageUrl) {
-        errors.imageUrl = "Please enter an image URL"
+    if (!regex_image.test(newDog.image)) {
+        errors.image = "Only images with this .jpg and .png format are allowed"
+    } else if (!newDog.image) {
+        errors.image = "Please enter an image URL"
     }
 
     if (!isNaN(newDog.min_height) && !isNaN(newDog.max_height)) {
@@ -19,11 +24,6 @@ const validations = (newDog) => {
         errors.height = "Please enter valid numbers for height";
     }
 
-    // if (parseInt(newDog.min_weight) >= parseInt(newDog.max_weight)) {
-    //     errors.weight = "Minimum weight should be less than maximum weight"
-    // } else if (!newDog.min_weight && !newDog.max_weight) {
-    //     errors.weight = "Please enter multiple values"
-    // }
 
     if (!isNaN(newDog.min_weight) && !isNaN(newDog.max_weight)) {
         if (parseInt(newDog.min_weight) >= parseInt(newDog.max_weight)) {

@@ -12,11 +12,10 @@ const Form = () => {
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
-  
 
   const [newDog, setNewDog] = useState({
     name: "",
-    imageUrl: "",
+    image: "",
     min_height: "",
     max_height: "",
     min_weight: "",
@@ -28,14 +27,43 @@ const Form = () => {
 
   const [errors, setErrors] = useState({
     name: "",
-    imageUrl: "",
+    image: "",
     height: "",
     weight: "",
     life_span: "",
     temperaments: [],
   });
 
-  const [selectTemperament, setSelectTemperament] = useState({});
+  const [selectTemperament, setSelectTemperament] = useState([]);
+
+  const handleTemperamentSelected = (e) => {
+    const temperamentSelect = e.target.value;
+
+    if (selectTemperament.includes(temperamentSelect)) {
+      return alert("Temperature is already selected");
+    }
+
+    if (selectTemperament.length > 8) {
+      return alert("Maximum 8 temperatures please");
+    }
+
+    // Agregar la temp seleccionada a la lista de temp seleccionadas
+    setSelectTemperament([...selectTemperament, temperamentSelect]);
+
+    setNewDog({
+      ...newDog,
+      temperaments: [...newDog.temperaments, temperamentSelect],
+    });
+
+    setErrors({ ...errors, temperaments: "" });
+  };
+
+  const handleRemoveTemperament = (temp) => {
+    const updateTemperament = selectTemperament.filter(
+      (t) => t !== temp
+    );
+    setSelectTemperament(updateTemperament);
+  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -56,7 +84,7 @@ const Form = () => {
         // si se creo, limpiamos el formulario
         setNewDog({
           name: "",
-          imageUrl: "",
+          image: "",
           min_height: "",
           max_height: "",
           min_weight: "",
@@ -65,13 +93,15 @@ const Form = () => {
           life_spanMax: "",
           temperaments: [],
         });
+        setSelectTemperament([]);
+        alert("Dog created successfully!");
       })
       .catch((error) => console.error(error.message));
   };
 
   const disabled =
     newDog.name === "" ||
-    newDog.imageUrl === "" ||
+    newDog.image === "" ||
     newDog.temperaments.length === 0;
 
   return (
@@ -87,18 +117,14 @@ const Form = () => {
         />
         {errors.name && <p className={styles.error_message}>{errors.name}</p>}
 
-        {/* <input type="image" src="https://img.freepik.com/fotos-premium/perro-dibujos-animados-sentado-sobre-fondo-azul_881695-24794.jpg?size=626&ext=jpg&ga=GA1.2.758860279.1679697857&semt=ais" alt="" /> */}
-
         <label>Image URL:</label>
         <input
           type="text"
-          name="imageUrl"
-          value={newDog.imageUrl}
+          name="image"
+          value={newDog.image}
           onChange={handleChange}
         />
-        {errors.imageUrl && (
-          <p className={styles.error_message}>{errors.imageUrl}</p>
-        )}
+        {errors.image && <p className={styles.error_message}>{errors.image}</p>}
 
         <label>Height (min - max):</label>
         <input
@@ -161,7 +187,7 @@ const Form = () => {
         <select
           name="temperaments"
           value={newDog.temperaments}
-          onChange={handleChange}
+          onChange={handleTemperamentSelected}
         >
           <option value="">Select temperaments...</option>
           {allTemperaments.map((temp) => (
@@ -173,6 +199,26 @@ const Form = () => {
         {errors.temperaments && (
           <p className={styles.error_message}>{errors.temperaments}</p>
         )}
+
+        {/* Lista de temperamentos seleccionados */}
+        <div className={styles.tempContainer}>
+          {selectTemperament.map((temp) => (
+            <div key={temp} className={styles.selectTemp}>
+              <h3>{temp}</h3>
+              <button
+                type="button"
+                onClick={() => handleRemoveTemperament(temp)}
+              >
+                <span className={styles.buttonRemove}>
+                  <i
+                    className="fa-solid fa-trash"
+                    style={{ color: "white" }}
+                  ></i>
+                </span>
+              </button>
+            </div>
+          ))}
+        </div>
 
         <button
           type="submit"

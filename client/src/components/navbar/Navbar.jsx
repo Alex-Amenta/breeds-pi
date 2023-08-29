@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./Navbar.module.css";
 
-const Navbar = () => {
+const Navbar = ({ setCurrentPage }) => {
   return (
     <nav className={styles.container}>
       <ul>
@@ -12,7 +12,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li className={styles.li2}>
-          {location.pathname === "/home" && <SearchBar />}
+          {location.pathname === "/home" && (
+            <SearchBar setCurrentPage={setCurrentPage} />
+          )}
         </li>
         <li className={styles.li1}>
           <Link className={styles.link} to="/form">

@@ -34,6 +34,7 @@
   --button_color: #e8e8e8;
   --button_outline_color: #000000;
   font-size: 17px;
+  cursor: pointer;
   font-weight: bold;
   padding: inherit;
   border: none;

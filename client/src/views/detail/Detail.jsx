@@ -9,6 +9,20 @@ const Detail = () => {
   const dispatch = useDispatch();
   const dogDetails = useSelector((state) => state.dogDetails);
 
+  const verifiquedTemperament = () => {
+    const temperaments = dogDetails.temperaments;
+
+    if (typeof temperaments === "string") {
+      return temperaments;
+    } else if (Array.isArray(temperaments)) {
+      const dbTemperaments = temperaments
+        .map((temp) => temp.name)
+        .slice(0, 3)
+        .join(", ");
+      return dbTemperaments;
+    }
+  };
+
   useEffect(() => {
     dispatch(getDogsById(id));
   }, [dispatch, id]);
@@ -26,25 +40,25 @@ const Detail = () => {
           <div className={styles.infoContainer}>
             <h2>{dogDetails.name}</h2>
             <div className={styles.info}>
-              {dogDetails.weight && (
+              {dogDetails.min_weight && (
                 <p>
                   <b>Weight: </b>
-                  {dogDetails.weight}
+                  {dogDetails.min_weight} - {dogDetails.max_weight}
                 </p>
               )}
-              {dogDetails.height && (
+              {dogDetails.min_height && (
                 <p>
                   <b>Height: </b>
-                  {dogDetails.height}
+                  {dogDetails.min_height} - {dogDetails.max_height}
                 </p>
               )}
               <p>
                 <b>Temperaments: </b>
-                {dogDetails.temperament}
+                {verifiquedTemperament()}
               </p>
               <p>
                 <b>Years of life: </b>
-                {dogDetails.life_span}
+                {dogDetails.life_spanMin} - {dogDetails.life_spanMax}
               </p>
             </div>
           </div>

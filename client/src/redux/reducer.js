@@ -39,11 +39,11 @@ const rootReducer = (state = initialState, action) => {
         case POST_DOGS:
             return {
                 ...state,
-                dogs: payload
+                dogs: [...state.dogs, payload]
             }
 
         case FILTER_TEMPERAMENTS:
-            const selectedTemperaments = action.payload;
+            const selectedTemperaments = payload;
 
             if (!selectedTemperaments || selectedTemperaments.length === 0) {
                 return {
@@ -53,9 +53,13 @@ const rootReducer = (state = initialState, action) => {
                 };
             }
 
-            const filterTemperament = state.allDogs.filter((dog) =>
-                dog.temperament && selectedTemperaments.some(temp => dog.temperament.includes(temp))
-            );
+            const filterTemperament = state.allDogs.filter((dog) => {
+                if (dog.created) {
+                    return dog.temperaments.map(temp => temp.name).join(', ').includes(selectedTemperaments);
+                } else {
+                    return dog.temperament && selectedTemperaments.some(temp => dog.temperament.includes(temp))
+                }
+            })
 
             return {
                 ...state,
@@ -88,15 +92,15 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case ORDER_BY_WEIGHT:
+            if (!payload && payload.length === 0) {
+                return {
+                    ...state,
+                    dogs: state.allDogs
+                }
+            }
             const orderByWeight = [...state.dogs].sort((dogA, dogB) => {
-
-                // Dividir el rango de peso en dos valores numéricos (mínimo y máximo)
-                const [minWeightA, maxWeightA] = (dogA.weight || "0 - 0").split(" - ").map(parseFloat)
-                const [minWeightB, maxWeightB] = (dogB.weight || "0 - 0").split(" - ").map(parseFloat)
-
-                // Calcular el valor promedio del peso para ambos perros
-                const averageWeightA = Math.round((minWeightA + maxWeightA) / 2);
-                const averageWeightB = Math.round((minWeightB + maxWeightB) / 2);
+                const averageWeightA = (parseFloat(dogA.min_weight) + parseFloat(dogA.max_weight)) / 2;
+                const averageWeightB = (parseFloat(dogB.min_weight) + parseFloat(dogB.max_weight)) / 2;
 
                 if (payload === "asc") {
                     return averageWeightA - averageWeightB; // Ascendente

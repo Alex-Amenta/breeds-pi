@@ -1,7 +1,6 @@
 import styles from "./Card.module.css";
 
 const Card = (props) => {
-
   return (
     <div className={styles.card}>
       <div className={styles.firstContent}>
@@ -19,7 +18,14 @@ const Card = (props) => {
       >
         <h2>{props.name}</h2>
         <p>{props.temperament}</p>
-        <p className={styles.weight}>{props.weight} kg</p>
+        <p>
+          {props.temperaments
+            ? props.temperaments.map((temp) => temp.name).slice(0, 3).join(", ")
+            : null}
+        </p>
+        <p className={styles.weight}>
+          {props.min_weight} - {props.max_weight} kg
+        </p>
       </div>
     </div>
   );

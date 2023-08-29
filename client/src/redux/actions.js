@@ -57,7 +57,18 @@ const getTemperaments = () => {
         try {
             const apiData = await axios.get(URL_TEMPERAMENTS);
             const temperaments = apiData.data;
-            dispatch({ type: GET_TEMPERAMENTS, payload: temperaments });
+
+            const uniqueName = new Set();
+
+            const uniqueTemperaments = temperaments.filter((temp) => {
+                if (!uniqueName.has(temp.name)) {
+                    uniqueName.add(temp.name);
+                    return true;
+                }
+                return false;
+            });
+
+            dispatch({ type: GET_TEMPERAMENTS, payload: uniqueTemperaments });
         } catch (error) {
             console.log(error);
         }
@@ -66,33 +77,41 @@ const getTemperaments = () => {
 
 // Filtrar por temperamentos
 const filterByTemperament = (temperament) => {
-    return {
-        type: FILTER_TEMPERAMENTS,
-        payload: temperament
+    return (dispatch) => {
+        dispatch({
+            type: FILTER_TEMPERAMENTS,
+            payload: temperament
+        })
     }
 };
 
 // Filtrar perros por origen (API o base de datos)
 const filterBySource = (source) => {
-    return {
-        type: FILTER_BY_ORIGEN,
-        payload: source
+    return (dispatch) => {
+        dispatch({
+            type: FILTER_BY_ORIGEN,
+            payload: source
+        })
     }
 };
 
 // Filtrar nombres de perros en orden alfabetico (asc, desc)
 const orderByName = (order) => {
-    return {
-        type: ORDER_BY_NAME,
-        payload: order
+    return (dispatch) => {
+        dispatch({
+            type: ORDER_BY_NAME,
+            payload: order
+        })
     }
 };
 
 // Filtrar por peso (asc, desc)
 const orderByWeight = (order) => {
-    return {
-        type: ORDER_BY_WEIGHT,
-        payload: order
+    return (dispatch) => {
+        dispatch({
+            type: ORDER_BY_WEIGHT,
+            payload: order
+        })
     }
 };
 

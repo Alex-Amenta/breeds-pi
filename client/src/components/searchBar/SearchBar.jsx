@@ -3,7 +3,7 @@ import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogsByName } from "../../redux/actions";
 
-const SearchBar = () => {
+const SearchBar = ({ setCurrentPage }) => {
   const [dogName, setDogName] = useState("");
   const dispatch = useDispatch();
   const dogs = useSelector((state) => state.dogs);
@@ -19,6 +19,9 @@ const SearchBar = () => {
       );
       if (foundDog) {
         dispatch(getDogsByName(dogName));
+        setTimeout(() => {
+          setCurrentPage(1);
+        }, 1000);
       } else {
         alert("Dogs not found");
       }
@@ -30,15 +33,6 @@ const SearchBar = () => {
   const handleInputChange = (e) => {
     setDogName(e.target.value);
   };
-
-  //   // // Realizar la búsqueda en tiempo real
-  //   useEffect(() => {
-  //     const timerId = setTimeout(() => {
-  //       dispatch(getDogsByName(dogName));
-  //     }, 500);
-
-  //     return () => clearTimeout(timerId); // Limpiar el timer en cada cambio del input
-  //   }, [dispatch, dogName]);
 
   return (
     <div>
@@ -52,7 +46,7 @@ const SearchBar = () => {
           placeholder="Search dog..."
         />
         <button type="submit" className={styles.lupa}>
-        <i className="fa-solid fa-magnifying-glass"></i>
+          <i className="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
     </div>
@@ -60,3 +54,16 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+
+
+
+
+ // Realizar la búsqueda en tiempo real
+  //   useEffect(() => {
+  //     const timerId = setTimeout(() => {
+  //       dispatch(getDogsByName(dogName));
+  //     }, 500);
+
+  //     return () => clearTimeout(timerId); // Limpiar el timer en cada cambio del input
+  //   }, [dispatch, dogName]);
