@@ -25,9 +25,9 @@ const getDogsByIdHandler = async (req, res) => {
 
 const createDogsHandler = async (req, res) => {
     //Esta ruta crea un perro por body
-    const { image, name, height, weight, life_span, temperaments } = req.body;
+    const { image, name, min_height, max_height, min_weight, max_weight, life_spanMin, life_spanMax, temperaments } = req.body;
     try {
-        const newDog = await createDogs(image, name, height, weight, life_span, temperaments);
+        const newDog = await createDogs(image, name, min_height, max_height, min_weight, max_weight, life_spanMin, life_spanMax, temperaments);
         res.status(201).json({ message: newDog });
     } catch (error) {
         res.status(404).json({ error: error.message });
