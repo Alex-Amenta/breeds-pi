@@ -1,3 +1,5 @@
+![image](https://github.com/Alex-Amenta/breeds-pi/assets/111576219/e188ff00-12e3-49a0-97a8-e39894dac97a)
+
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
 # **DOGS** | Proyecto Individual
