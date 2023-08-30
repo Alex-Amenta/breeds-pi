@@ -5,3 +5,9 @@
     gap: 55px;
     margin: 0px 40px 0px 40px;
   }
+
+  .containerCards h1 {
+    margin: 13px 0px 20px 0px;
+    padding-bottom: 26px;
+    font-size: 3rem;
+  }

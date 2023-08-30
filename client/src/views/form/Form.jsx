@@ -59,10 +59,11 @@ const Form = () => {
   };
 
   const handleRemoveTemperament = (temp) => {
-    const updateTemperament = selectTemperament.filter(
-      (t) => t !== temp
-    );
-    setSelectTemperament(updateTemperament);
+    setSelectTemperament(selectTemperament.filter((t) => t !== temp));
+    setNewDog({
+      ...newDog,
+      temperaments: newDog.temperaments.filter((t) => t !== temp),
+    });
   };
 
   const handleChange = (e) => {

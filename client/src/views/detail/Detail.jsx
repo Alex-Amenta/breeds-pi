@@ -8,6 +8,7 @@ const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const dogDetails = useSelector((state) => state.dogDetails);
+  console.log(dogDetails);
 
   const verifiquedTemperament = () => {
     const temperaments = dogDetails.temperaments;
@@ -15,10 +16,7 @@ const Detail = () => {
     if (typeof temperaments === "string") {
       return temperaments;
     } else if (Array.isArray(temperaments)) {
-      const dbTemperaments = temperaments
-        .map((temp) => temp.name)
-        .slice(0, 3)
-        .join(", ");
+      const dbTemperaments = temperaments.map((temp) => temp.name).join(", ");
       return dbTemperaments;
     }
   };
@@ -39,6 +37,7 @@ const Detail = () => {
           </div>
           <div className={styles.infoContainer}>
             <h2>{dogDetails.name}</h2>
+            <h3>{dogDetails.breed_group}</h3>
             <div className={styles.info}>
               {dogDetails.min_weight && (
                 <p>

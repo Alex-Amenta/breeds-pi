@@ -1,10 +1,21 @@
 import styles from "./Card.module.css";
 
 const Card = (props) => {
+  const URL_IMAGE =
+    "https://img.freepik.com/fotos-premium/perro-dibujos-animados-sentado-sobre-fondo-azul_881695-24794.jpg?size=626&ext=jpg&ga=GA1.1.758860279.1679697857&semt=ais";
+
   return (
     <div className={styles.card}>
       <div className={styles.firstContent}>
-        <img src={props.image} alt={props.name} />
+        <img
+          src={props.image}
+          alt={props.name}
+          onError={(e) => {
+            e.target.src = URL_IMAGE;
+            e.target.onError = null;
+            e.preventDefault();
+          }}
+        />
       </div>
       <div
         className={styles.secondContent}
@@ -20,7 +31,7 @@ const Card = (props) => {
         <p>{props.temperament}</p>
         <p>
           {props.temperaments
-            ? props.temperaments.map((temp) => temp.name).slice(0, 3).join(", ")
+            ? props.temperaments.map((temp) => temp.name).join(", ")
             : null}
         </p>
         <p className={styles.weight}>

@@ -39,6 +39,7 @@ const rootReducer = (state = initialState, action) => {
         case POST_DOGS:
             return {
                 ...state,
+                allDogs: [...state.allDogs, payload],
                 dogs: [...state.dogs, payload]
             }
 

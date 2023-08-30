@@ -5,6 +5,7 @@
   flex-direction: row-reverse;
   height: 100px;
   margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 .container label {

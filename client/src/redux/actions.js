@@ -57,18 +57,7 @@ const getTemperaments = () => {
         try {
             const apiData = await axios.get(URL_TEMPERAMENTS);
             const temperaments = apiData.data;
-
-            const uniqueName = new Set();
-
-            const uniqueTemperaments = temperaments.filter((temp) => {
-                if (!uniqueName.has(temp.name)) {
-                    uniqueName.add(temp.name);
-                    return true;
-                }
-                return false;
-            });
-
-            dispatch({ type: GET_TEMPERAMENTS, payload: uniqueTemperaments });
+            dispatch({ type: GET_TEMPERAMENTS, payload: temperaments });
         } catch (error) {
             console.log(error);
         }
