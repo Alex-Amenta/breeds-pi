@@ -115,9 +115,9 @@ const createDogs = async (image, name, min_height, max_height, min_weight, max_w
         created: true
     });
 
-    if (temperaments) {
+    if (temperaments && temperaments.length > 0) {
         const existingTemperaments = await Temperaments.findAll({ where: { name: temperaments } });
-        if (existingTemperaments.length > 0) {
+        if (existingTemperaments) {
             // Crear la relación entre el perro y los temperamentos
             await newDog.addTemperaments(existingTemperaments);
             return 'Dog created successfully';

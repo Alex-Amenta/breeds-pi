@@ -12,7 +12,7 @@ const getAllTemperaments = async () => {
             const temperaments = dog.temperament.split(',').map((temp) => temp.trim());
 
             temperaments.forEach((temp) => {
-                if (temp !== "") temperamentSet.add(temp);
+                if (temp !== "") temperamentSet.add(temp)
             })
         }
     })
@@ -20,8 +20,11 @@ const getAllTemperaments = async () => {
     // Lo convertimos en array y lo ordenamos alfabeticamente
     const uniqueTemperaments = [...temperamentSet].sort();
 
-    const createDbTemperament = uniqueTemperaments.map((element) => {
-        return Temperaments.create({ name: element });
+    const createDbTemperament = uniqueTemperaments.map(async (element) => {
+        const existingTemperament = await Temperaments.findOne({ where: { name: element } })
+        if (!existingTemperament) {
+            return Temperaments.create({ name: element });
+        }
     });
 
     // Esperar todas las operaciones de creación antes de continuar
@@ -30,7 +33,7 @@ const getAllTemperaments = async () => {
     // Consultar los temperamentos existentes en la base de datos
     const dbTemperaments = await Temperaments.findAll();
 
-    return dbTemperaments;
+    return dbTemperaments
 };
 
 module.exports = getAllTemperaments;
