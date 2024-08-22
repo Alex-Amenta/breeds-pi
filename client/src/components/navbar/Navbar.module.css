@@ -2,6 +2,7 @@
   background-color: #4d8e9a;
   background-position: top;
   background-size: cover;
+  padding-block: 1rem;
 }
 
 .container ul {

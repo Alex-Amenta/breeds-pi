@@ -5,11 +5,17 @@
 
   color-scheme: dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #ebe6e6;
+  background: rgb(203, 245, 255);
+  background: radial-gradient(
+    circle,
+    rgba(203, 245, 255, 1) 0%,
+    rgba(235, 230, 230, 1) 77%
+  );
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 a {
